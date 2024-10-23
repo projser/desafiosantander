@@ -1,0 +1,40 @@
+plugins {
+	id 'java'
+	id 'war'
+	id 'org.springframework.boot' version '3.3.4'
+	id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'com.santanderdesafio'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	runtimeOnly 'com.mysql:mysql-connector-j'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	
+	// Dependências para teste
+	testImplementation 'junit:junit:4.13.2' // JUnit 4 para testes
+	testImplementation 'com.github.tomakehurst:wiremock-jre8:2.35.0' // WireMock para simular APIs
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine' // Remover suporte ao JUnit 5
+	}
+	
+	implementation 'org.springframework.boot:spring-boot-starter'
+}
+
+tasks.named('test') {
+	// Nenhuma configuração adicional necessária para JUnit 4
+}

@@ -15,4 +15,3 @@ public interface CepLogRepository extends JpaRepository<CepLog, Long> {
 
    
 }
-
